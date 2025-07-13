@@ -137,3 +137,14 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# IDE
+.idea
+.vscode
+
+# Datas extracted
+datas
+!datas/.gitkeep
+public/i18n
+!public/i18n/.gitkeep
+src/perks.json

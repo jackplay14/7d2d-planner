@@ -1,0 +1,384 @@
+/** @Jackplay 2025 - 7D2D Planner**/
+@use 'sass:color';
+
+$reactive: #b35204;
+$maxWidth: 1200px;
+
+:root {
+  font-family: system-ui,  Helvetica, Avenir, Arial, sans-serif;
+  line-height: 1.2;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(180, 180, 180, 1);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 4. Add accessible line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+body {
+  background-color: #222;
+  background-image: url("/images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+a {
+  font-weight: 500;
+  color: #b35204;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #e48648;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to, .fade-leave-from {
+  opacity: 1;
+}
+
+.changelog {
+  position: fixed;
+  z-index: 10;
+  background: rgba(0,0,0,.9);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.button {
+  background: color.adjust($reactive, $lightness: 60%);
+  border: solid thin color.adjust($reactive, $lightness: 45%);
+  padding: .1em .7em;
+  line-height: 1em;
+  border-radius: 4px;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    background: $reactive;
+    color: #EEE;
+  }
+}
+
+.app-header {
+  background: rgba(0,0,0,.5);
+  max-width: $maxWidth;
+  border: solid 2px #000;
+  margin: 1em auto;
+  padding: 1em;
+  h1 {
+    text-align: center;
+    font-size: 1.8em;
+    margin: 0;
+    padding: 0;
+  }
+  h2.sub {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+  }
+  nav {
+    display: flex;
+  }
+}
+
+.loading {
+  align-items: center;
+  justify-content: center;
+  .message {
+    text-align: center;
+    padding: 3em;
+  }
+}
+
+.footer {
+  align-items: center;
+  justify-content: center;
+  font-size: .8em;
+  .message {
+    display: block;
+    padding: 0 3em;
+    text-align: center;
+    small {
+      font-weight: 300
+    }
+  }
+}
+
+.screen {
+  background: rgba(0,0,0,.6);
+  display: flex;
+  max-width: $maxWidth;
+  border: solid 4px #000;
+  margin: 1em auto;
+}
+
+.attributes-menu {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  .attributes-menu-item{
+    opacity: .6;
+  }
+  .reactive.attributes-menu-item {
+    &:hover {
+      background: #000;
+      opacity: 1;
+    }
+  }
+  img {
+    max-width: 2em;
+    margin: .25em;
+    border: none;
+  }
+}
+
+.level-item {
+  display: flex;
+  border-top: solid 2px #000;
+  border-bottom: solid 2px #000;
+  .level, .buy {
+    flex: 1;
+  }
+  .description {
+    margin: .25em .25em .75em 0;
+    line-height: 1.2em;
+  }
+  .level,.buyer {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    padding: .25em;
+    font-weight: 700;
+  }
+  .buyer {
+    opacity: .7;
+    &.buyed,&.disabled {
+      cursor: default;
+    }
+    &.buyable {
+      opacity: 1;
+      cursor: pointer;
+    }
+    &.disabled {
+      cursor: default;
+    }
+    &.disabled-help {
+      cursor: help;
+    }
+  }
+  .name {
+    margin-top:.5em;
+    flex: 20;
+    &:hover {
+      cursor: default;
+    }
+    strong {
+      border-bottom: solid thin rgba(0,0,0,.2);
+      display: flex;
+      align-items: center;
+      .title {
+        flex: auto;
+        color: #eee;
+      }
+      small {
+        flex: 1;
+        text-align: right;
+        font-weight: 300;
+      }
+
+    }
+  }
+}
+
+.perk-heading {
+  display: flex;
+  padding: .25em 1em;
+  border-bottom: solid thin #000;
+  .image {
+    flex: 1;
+    img {
+      width: 100%;
+    }
+  }
+  .description {
+    flex: 8;
+    padding: .3em;
+    padding-left: 1em;
+  }
+}
+
+.buy {
+  background: rgba(255,255,255,.2);
+}
+
+.panel {
+  flex: 2
+}
+.panel.right {
+  flex: 3;
+  border-left: solid 4px #000;
+}
+
+.heading {
+  background: rgba(0,0,0,.9);
+  font-size: 1.2em;
+  display: flex;
+  padding: .25em;
+  >*{
+    flex:1;
+  }
+  >:last-child{
+    text-align: right;
+  }
+  em {
+    font-weight: 300;
+  }
+}
+
+.label {
+  display: flex;
+  img {
+    max-height: 1.4em;
+    margin-right: .3em;
+    flex-basis: 1em;
+  }
+  .text {
+    flex: auto;
+  }
+  .spent {
+    flex-basis: 3em;
+    text-align: right;
+    padding-right: .3em;
+  }
+}
+
+.attribute-aside {
+  border-top: solid 1px #000;
+  font-size: 1.2em;
+  .label .text { font-weight: 700 }
+  .attribute-group {
+    border-top: solid 1px #000;
+    .label {
+      margin-left: 1em;
+      .text {
+        font-weight: 600
+      }
+    }
+    .attribute-group-perk {
+      border-top: solid 1px #000;
+      .label {
+        margin-left: 2em;
+        .text {
+          font-weight: 500
+        }
+      }
+      &.selected {
+        background-color: rgba(255,255,255,.25);
+        color: #EEE;
+      }
+      &.flatperk {
+        .label {
+          margin-left:0
+        }
+      }
+      &.book {
+        .label {
+          margin-left:0
+        }
+        .spent {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.reactive {
+  transition: linear .25s;
+  &:hover {
+    background: rgba(color.adjust($reactive, $lightness: 25%),.25);
+    //color: #333;
+    cursor: pointer;
+  }
+}
+
+.attributes-menu {
+  background: rgba(0,0,0,.5);
+  .attributes-menu-item {
+    &:hover {
+      background: white;
+      color: #333;
+      cursor: pointer;
+    }
+
+  }
+}
