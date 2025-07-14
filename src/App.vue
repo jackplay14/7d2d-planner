@@ -6,7 +6,7 @@ import axios from "axios";
 export default {
   data(){
     return {
-      version: "0.0.4",
+      version: "0.0.5",
       loading: true,
       currentLang: 'en',
       langs: {
@@ -207,6 +207,15 @@ export default {
       <p>Lasted version : <strong>{{ version }}</strong></p>
       <ul>
         <li>
+          <strong>v0.0.5</strong>
+          <em> (14 July 2025)</em>
+          <ul>
+            <li>Replace \\n by BR</li>
+            <li>Replace [DECEA3].*[-] by STRONG</li>
+            <li>Optimize extraction I18N and PERKS TREE</li>
+          </ul>
+        </li>
+        <li>
           <strong>v0.0.4</strong>
           <em> (10 July 2025)</em>
           <ul>
@@ -323,16 +332,14 @@ export default {
           <div>
             {{ i18n[selectedAttribute.label]||selectedAttribute.label }}
           </div>
-          <a class="button" @click="handlerReset()">REST PERKS</a>
+          <a class="button" @click="handlerReset()">RESET PERKS</a>
         </header>
         <div v-if="selectedPerk">
           <div class="perk-heading">
             <div class="image">
               <img :src="'/images/'+selectedPerk.icon+'.png'" :alt="selectedPerk.icon" />
             </div>
-            <div class="description">
-              {{ i18n[selectedPerk.description] }}<br>
-            </div>
+            <div class="description" v-html="i18n[selectedPerk.description]"></div>
           </div>
           <div class="levelDetail" style="display: none">
             <div v-if="selectedLevel">
@@ -356,11 +363,9 @@ export default {
                 <strong>
                   <span class="title">
                     <span v-if="level.buyable == false && level.level == 8">
-                      Completed
+                      Complete
                     </span>
-                    <span v-else>
-                      {{ i18n[level.label]||level.label }}
-                    </span>
+                    <span v-else v-html="i18n[level.label]||level.label" ></span>
                   </span>
                   <small class="requireInfo" v-if="!level.buyable && level.buyable != false">
                     Cost: {{ level.cost }} pt
@@ -369,10 +374,7 @@ export default {
                     </span>
                   </small>
                 </strong>
-                <p class="description">
-                  {{ i18n[level.description] }}
-                </p>
-
+                <p class="description" v-html="i18n[level.description]"></p>
               </span>
               <template v-if="!level.buyable && level.buyable != false">
                 <span v-if="level.buy" class="buyer buyed">

@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "i18n": "node bin/localization.js",
+    "perks": "node bin/progression.js"
   },
   "dependencies": {
     "axios": "^1.10.0",
@@ -14,7 +16,9 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.0",
+    "csv-parse": "^6.0.0",
     "sass-embedded": "^1.89.2",
-    "vite": "^7.0.3"
+    "vite": "^7.0.3",
+    "xml2js": "^0.6.2"
   }
 }
