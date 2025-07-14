@@ -212,7 +212,7 @@ export default {
           <ul>
             <li>Replace \\n by BR</li>
             <li>Replace [DECEA3].*[-] by STRONG</li>
-            <li>Optimize extraction I18N and PERKS TREE</li>
+            <li>Optimize and Fix extraction I18N and PERKS TREE (bad text in perk list)</li>
           </ul>
         </li>
         <li>
